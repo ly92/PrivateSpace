@@ -7,19 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var contentTF: UITextView!
+    @IBOutlet weak var savaBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func doneEdit(_ sender: UIBarButtonItem) {
+        self.contentTF.resignFirstResponder()
+    }
+    
+    //之前的日记
+    @IBAction func recordData(_ sender: UIBarButtonItem) {
+    
+    }
+    
+    //保存
+    @IBAction func saveAction() {
+        
+    }
+    
+    
 }
+
 

@@ -15,6 +15,8 @@
 		08B8A4781E12BA9C0029FFB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08B8A4761E12BA9C0029FFB7 /* LaunchScreen.storyboard */; };
 		08B8A4831E12BA9D0029FFB7 /* PrivateSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4821E12BA9D0029FFB7 /* PrivateSpaceTests.swift */; };
 		08B8A48E1E12BA9D0029FFB7 /* PrivateSpaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A48D1E12BA9D0029FFB7 /* PrivateSpaceUITests.swift */; };
+		08B8A4B41E12C3030029FFB7 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4B31E12C3030029FFB7 /* CoreDataHelper.swift */; };
+		08B8A4B61E12C4230029FFB7 /* BreakupNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4B51E12C4230029FFB7 /* BreakupNote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		08B8A4891E12BA9D0029FFB7 /* PrivateSpaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivateSpaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B8A48D1E12BA9D0029FFB7 /* PrivateSpaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSpaceUITests.swift; sourceTree = "<group>"; };
 		08B8A48F1E12BA9D0029FFB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08B8A4B31E12C3030029FFB7 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		08B8A4B51E12C4230029FFB7 /* BreakupNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakupNote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		08B8A4691E12BA9C0029FFB7 /* PrivateSpace */ = {
 			isa = PBXGroup;
 			children = (
+				08B8A4AD1E12C1A80029FFB7 /* app */,
 				08B8A46A1E12BA9C0029FFB7 /* AppDelegate.swift */,
 				08B8A46C1E12BA9C0029FFB7 /* ViewController.swift */,
 				08B8A46E1E12BA9C0029FFB7 /* Main.storyboard */,
@@ -126,6 +131,23 @@
 				08B8A48F1E12BA9D0029FFB7 /* Info.plist */,
 			);
 			path = PrivateSpaceUITests;
+			sourceTree = "<group>";
+		};
+		08B8A4AD1E12C1A80029FFB7 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				08B8A4AE1E12C1A80029FFB7 /* data */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		08B8A4AE1E12C1A80029FFB7 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				08B8A4B31E12C3030029FFB7 /* CoreDataHelper.swift */,
+				08B8A4B51E12C4230029FFB7 /* BreakupNote.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,8 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B8A4B61E12C4230029FFB7 /* BreakupNote.swift in Sources */,
 				08B8A46D1E12BA9C0029FFB7 /* ViewController.swift in Sources */,
 				08B8A46B1E12BA9C0029FFB7 /* AppDelegate.swift in Sources */,
+				08B8A4B41E12C3030029FFB7 /* CoreDataHelper.swift in Sources */,
 				08B8A4731E12BA9C0029FFB7 /* PrivateSpace.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +540,7 @@
 				08B8A4941E12BA9D0029FFB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08B8A4951E12BA9D0029FFB7 /* Build configuration list for PBXNativeTarget "PrivateSpaceTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +549,7 @@
 				08B8A4971E12BA9D0029FFB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08B8A4981E12BA9D0029FFB7 /* Build configuration list for PBXNativeTarget "PrivateSpaceUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +558,7 @@
 				08B8A49A1E12BA9D0029FFB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
