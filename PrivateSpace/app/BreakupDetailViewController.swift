@@ -44,7 +44,7 @@ class BreakupDetailViewController: UIViewController {
         self.view.endEditing(true)
         
         let nowDate = Date()
-        let timeZone = TimeZone.init(identifier: "UTC")
+        let timeZone = TimeZone(secondsFromGMT: +28800)
         let formatter = DateFormatter()
         formatter.timeZone = timeZone
         formatter.locale = Locale.init(identifier: "zh_CN")
