@@ -92,7 +92,6 @@
                         <barButtonItem key="rightBarButtonItem" title="data" id="G8A-eS-W7P">
                             <connections>
                                 <action selector="recordData:" destination="mf7-h8-3I0" id="Omh-sl-nh3"/>
-                                <segue destination="geP-g9-0Ym" kind="push" id="C47-e8-eN6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -109,17 +108,17 @@
         <!--Record Data Table View Controller-->
         <scene sceneID="tVK-vE-xbI">
             <objects>
-                <tableViewController id="geP-g9-0Ym" customClass="RecordDataTableViewController" customModule="PrivateSpace" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="61F-EM-0ax">
+                <tableViewController storyboardIdentifier="RecordDataTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="geP-g9-0Ym" customClass="RecordDataTableViewController" customModule="PrivateSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="61F-EM-0ax">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="wGg-ye-Avy">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wGg-ye-Avy" id="Oha-gz-2tg">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

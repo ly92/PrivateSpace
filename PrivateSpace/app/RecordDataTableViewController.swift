@@ -43,8 +43,12 @@ class RecordDataTableViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "personCell")
         
         cell.textLabel?.text = breakups?[indexPath.row].title
-        
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
 
