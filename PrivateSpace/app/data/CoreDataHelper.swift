@@ -16,7 +16,7 @@ func getContext () -> NSManagedObjectContext {
 }
 
 // 存储新好友
-func store(createtime : String, modifytime : String, content : String){
+func store(createtime : String, modifytime : String, content : String, title : String){
     let context = getContext()
     // 定义一个entity，这个entity一定要在xcdatamodeld中做好定义
     let entity = NSEntityDescription.entity(forEntityName: "Breakup", in: context)
@@ -24,6 +24,7 @@ func store(createtime : String, modifytime : String, content : String){
     breakup.setValue(createtime, forKey: "createtime")
     breakup.setValue(modifytime, forKey: "modifytime")
     breakup.setValue(content, forKey: "content")
+    breakup.setValue(title, forKey: "title")
     save()
 }
 
@@ -38,7 +39,7 @@ func save() {
 
 // 查找,未找到返回nil
 func lookup(indentification :String) -> Breakup?{
-    for breakup in fetchAllPerson()!{
+    for breakup in fetchAllBreakup()!{
         if breakup.mark == indentification {
             return breakup
         }
@@ -47,7 +48,7 @@ func lookup(indentification :String) -> Breakup?{
 }
 
 //获取所有对象
-func fetchAllPerson() -> [Breakup]?{
+func fetchAllBreakup() -> [Breakup]?{
     do {
         return try getContext().fetch(Breakup.fetchRequest()) as [Breakup]
     } catch  {

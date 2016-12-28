@@ -17,6 +17,8 @@
 		08B8A48E1E12BA9D0029FFB7 /* PrivateSpaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A48D1E12BA9D0029FFB7 /* PrivateSpaceUITests.swift */; };
 		08B8A4B41E12C3030029FFB7 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4B31E12C3030029FFB7 /* CoreDataHelper.swift */; };
 		08B8A4B61E12C4230029FFB7 /* BreakupNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4B51E12C4230029FFB7 /* BreakupNote.swift */; };
+		08B8A4D11E1381360029FFB7 /* RecordDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4D01E1381360029FFB7 /* RecordDataTableViewController.swift */; };
+		08B8A4D31E13870A0029FFB7 /* BreakupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B8A4D21E13870A0029FFB7 /* BreakupDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		08B8A48F1E12BA9D0029FFB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08B8A4B31E12C3030029FFB7 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		08B8A4B51E12C4230029FFB7 /* BreakupNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakupNote.swift; sourceTree = "<group>"; };
+		08B8A4D01E1381360029FFB7 /* RecordDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDataTableViewController.swift; sourceTree = "<group>"; };
+		08B8A4D21E13870A0029FFB7 /* BreakupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakupDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				08B8A4AE1E12C1A80029FFB7 /* data */,
+				08B8A4D01E1381360029FFB7 /* RecordDataTableViewController.swift */,
+				08B8A4D21E13870A0029FFB7 /* BreakupDetailViewController.swift */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -289,6 +295,8 @@
 			files = (
 				08B8A4B61E12C4230029FFB7 /* BreakupNote.swift in Sources */,
 				08B8A46D1E12BA9C0029FFB7 /* ViewController.swift in Sources */,
+				08B8A4D11E1381360029FFB7 /* RecordDataTableViewController.swift in Sources */,
+				08B8A4D31E13870A0029FFB7 /* BreakupDetailViewController.swift in Sources */,
 				08B8A46B1E12BA9C0029FFB7 /* AppDelegate.swift in Sources */,
 				08B8A4B41E12C3030029FFB7 /* CoreDataHelper.swift in Sources */,
 				08B8A4731E12BA9C0029FFB7 /* PrivateSpace.xcdatamodeld in Sources */,

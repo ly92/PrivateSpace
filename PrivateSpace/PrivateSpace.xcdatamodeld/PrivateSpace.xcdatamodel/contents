@@ -5,8 +5,9 @@
         <attribute name="createtime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mark" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modifytime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Breakup" positionX="-45" positionY="0" width="128" height="105"/>
+        <element name="Breakup" positionX="-45" positionY="0" width="128" height="120"/>
     </elements>
 </model>

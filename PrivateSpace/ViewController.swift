@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
+    @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var contentTF: UITextView!
     @IBOutlet weak var savaBtn: UIButton!
     
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func doneEdit(_ sender: UIBarButtonItem) {
-        self.contentTF.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
     //之前的日记
@@ -35,7 +36,23 @@ class ViewController: UIViewController {
     
     //保存
     @IBAction func saveAction() {
+        guard titleTF.text != "" else {
+            alertController(title: "error", message: "title empty", action: "OK", master: self)
+            return
+        }
         
+        let nowDate = Date()
+        let timeZone = TimeZone.init(identifier: "UTC")
+        let formatter = DateFormatter()
+        formatter.timeZone = timeZone
+        formatter.locale = Locale.init(identifier: "zh_CN")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let cTime = formatter.string(from: nowDate)
+        
+        store(createtime: cTime, modifytime: "", content: contentTF.text, title: titleTF.text!)
+        contentTF.text = ""
+        titleTF.text = ""
+        alertController(title: "success", message: "add", action: "OK", master: self)
     }
     
     
