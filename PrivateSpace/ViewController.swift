@@ -6,21 +6,37 @@
 //  Copyright © 2016年 ly. All rights reserved.
 //
 
+//https://www.jianshu.com/p/a9c64ac2c586
 import UIKit
 import CoreData
 import LocalAuthentication
+import Speech
+import AVKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var contentTF: UITextView!
     @IBOutlet weak var savaBtn: UIButton!
+    @IBOutlet weak var speekImgV: UIImageView!
+    
+    fileprivate var speechRecognizer : SFSpeechRecognizer? {
+        get{
+            let local = Locale.init(identifier: "zh_CN")
+            let reco = SFSpeechRecognizer.init(locale: local)
+            return reco
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.addTapAction()
+        self.speechRecognizer?.delegate = self
         
     }
-
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,7 +93,7 @@ class ViewController: UIViewController {
             self.navigationController?.pushViewController(breakupDataVC, animated: true)
         })
     }
-
+    
     
     //保存
     @IBAction func saveAction() {
@@ -101,6 +117,66 @@ class ViewController: UIViewController {
     }
     
     
+    //手势
+    func addTapAction() {
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(ViewController.longPressAction(_:)))
+        longPress.minimumPressDuration = 0.3
+        self.speekImgV.addGestureRecognizer(longPress)
+    }
+    //手势处理
+    func longPressAction(_ pan : UILongPressGestureRecognizer) {
+        switch pan.state {
+        case .began:
+            //开始
+            self.speekImgV.image = #imageLiteral(resourceName: "speeking")
+            self.prepareSpeech()
+        case .cancelled:
+            //取消
+            print("cancelled")
+        case .changed:
+            //
+            print("changed")
+        case .ended:
+            //结束
+            self.speekImgV.image = #imageLiteral(resourceName: "speek")
+        case .failed:
+            //失败
+            print("failed")
+        case .possible:
+            //
+            print("possible")
+            
+        }
+        
+        
+    }
+    //
+    func prepareSpeech(){
+        SFSpeechRecognizer.requestAuthorization { (hander) in
+            switch hander{
+            case .notDetermined:
+                //语音识别未授权
+                print("语音识别未授权")
+            case .denied:
+                //用户未授权使用语音识别
+                print("用户未授权使用语音识别")
+            case .restricted:
+                //语音识别在这台设备上受到限制
+                print("语音识别在这台设备上受到限制")
+            case .authorized:
+                //开始录音
+                print("开始录音")
+            }
+        }
+    }
+    
+    func startRecording() {
+        
+    }
 }
 
-
+extension ViewController : SFSpeechRecognizerDelegate{
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        
+    }
+}
