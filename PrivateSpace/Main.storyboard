@@ -39,10 +39,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbD-Rw-VUc">
-                                <rect key="frame" x="0.0" y="114" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="wOO-Ql-qG0"/>
+                                    <constraint firstAttribute="height" constant="150" id="wOO-Ql-qG0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -70,7 +70,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speek" translatesAutoresizingMaskIntoConstraints="NO" id="vPf-XH-FlG">
-                                <rect key="frame" x="137.5" y="434" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="284" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="gZ1-hB-PHr"/>
                                     <constraint firstAttribute="width" constant="100" id="jDg-YL-Wdd"/>

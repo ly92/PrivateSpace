@@ -26,16 +26,20 @@ class ViewController: UIViewController {
             return reco
         }
     }
+    fileprivate var recognitionRequest : SFSpeechAudioBufferRecognitionRequest?
+    fileprivate var recognitionTask : SFSpeechRecognitionTask?
+    fileprivate let audioEngine = AVAudioEngine()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.addTapAction()
         self.speechRecognizer?.delegate = self
-        
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.prepareSpeech()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,11 +55,9 @@ class ViewController: UIViewController {
         //1.初始化TouchID句柄
         let authentication = LAContext()
         var error: NSError?
-        
         //2.检查Touch ID是否可用
         let isAvailable = authentication.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                                            error: &error)
-        
         //3.处理结果
         if isAvailable
         {
@@ -73,20 +75,19 @@ class ViewController: UIViewController {
                 else
                 {
                     //上面提到的指纹识别错误
-                    NSLog("您未能通过Touch ID指纹验证！错误原因：\n\(error)")
+                    NSLog("您未能通过Touch ID指纹验证！错误原因：\n\(String(describing: error))")
                 }
             })
         }
         else
         {
             //上面提到的硬件配置
-            NSLog("Touch ID不能使用！错误原因：\n\(error)")
+            NSLog("Touch ID不能使用！错误原因：\n\(String(describing: error))")
         }
     }
     
     
     func recordAction() -> Void {
-        
         DispatchQueue.main.async(execute: {
             let breakupDataVC = UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewController(withIdentifier: "RecordDataTableViewController") as! RecordDataTableViewController
@@ -101,7 +102,6 @@ class ViewController: UIViewController {
             alertController(title: "error", message: "title empty", action: "OK", master: self)
             return
         }
-        
         let nowDate = Date()
         let timeZone = TimeZone(secondsFromGMT: +28800)
         let formatter = DateFormatter()
@@ -128,27 +128,35 @@ class ViewController: UIViewController {
         switch pan.state {
         case .began:
             //开始
+            if self.audioEngine.isRunning{
+                self.audioEngine.stop()
+                if self.recognitionRequest != nil{
+                    self.recognitionRequest?.endAudio()
+                }
+            }
+            self.startRecording()
             self.speekImgV.image = #imageLiteral(resourceName: "speeking")
-            self.prepareSpeech()
         case .cancelled:
             //取消
             print("cancelled")
         case .changed:
             //
-            print("changed")
+            let _ = 1
+//            print("changed")
         case .ended:
             //结束
             self.speekImgV.image = #imageLiteral(resourceName: "speek")
+            self.audioEngine.stop()
+            if self.recognitionRequest != nil{
+                self.recognitionRequest?.endAudio()
+            }
         case .failed:
             //失败
             print("failed")
         case .possible:
             //
             print("possible")
-            
         }
-        
-        
     }
     //
     func prepareSpeech(){
@@ -171,12 +179,67 @@ class ViewController: UIViewController {
     }
     
     func startRecording() {
+        if self.recognitionTask != nil{
+            self.recognitionTask?.cancel()
+            self.recognitionTask = nil
+        }
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryRecord)
+            try audioSession.setMode(AVAudioSessionModeMeasurement)
+            try audioSession.setActive(true, with: AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation)
+        } catch {
+        }
         
+        
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        guard let inputNode = self.audioEngine.inputNode else {
+            return
+        }
+        self.recognitionRequest?.shouldReportPartialResults = true
+        self.recognitionTask = self.speechRecognizer?.recognitionTask(with: self.recognitionRequest!, resultHandler: { (result, error) in
+            var isFinal = false
+            if result != nil{
+                isFinal = result!.isFinal
+                if isFinal{
+                    if self.titleTF.isFirstResponder{
+                        self.titleTF.text = self.titleTF.text! + result!.bestTranscription.formattedString
+                    }else{
+                       self.contentTF.text = self.contentTF.text + result!.bestTranscription.formattedString
+                    }
+                }
+            }
+            
+            if error != nil || isFinal{
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionTask = nil
+                self.recognitionRequest = nil
+                
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.removeTap(onBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            if self.recognitionRequest != nil{
+                self.recognitionRequest?.append(buffer)
+            }
+        }
+        self.audioEngine.prepare()
+        do {
+            try self.audioEngine.start()
+        } catch  {
+        }
     }
 }
 
 extension ViewController : SFSpeechRecognizerDelegate{
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        
+        if available{
+            print("begin record")
+        }else{
+            print("unkonw")
+        }
     }
 }
